@@ -35,6 +35,12 @@
 |---------------------------------------|----------------------------------|--------|-----|
 | [Shipment object] | [shipments_curated] | [Yes/No] | [detail] |
 
+## Exception Path Readiness
+
+| Workflow or exception path | Trigger | Primary handling path | Manual fallback | Residual risk if fallback remains | Ready for review? |
+|----------------------------|---------|-----------------------|-----------------|-----------------------------------|-------------------|
+| [Late-arriving source file] | [source arrives after cutoff] | [automatic backfill transform] | [manual rerun + DS notification] | [stale downstream KPIs until rerun completes] | [Yes/No] |
+
 ## Blockers And Decisions
 
 | Blocker | Impact | Needs architecture change? | Needs DS decision? |
@@ -45,4 +51,5 @@
 
 1. [ ] Hand validated outputs to review and QA.
 2. [ ] Flag any ontology-backing mismatch immediately.
-3. [ ] Keep incremental strategy and quality thresholds aligned with the architecture doc.
+3. [ ] Make every exception path and manual fallback explicit before calling the build review-ready.
+4. [ ] Keep incremental strategy and quality thresholds aligned with the architecture doc.

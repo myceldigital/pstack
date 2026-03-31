@@ -2,11 +2,11 @@
 
 **Turn one deployment strategist into a disciplined multi-agent Palantir delivery team.**
 
-`pstack` is an operator-grade repository of AI skills for Palantir deployments. It is built for deployment strategists who need an execution contract, not a loose collection of prompts: phase gates, artifact handoffs, governance boundaries, examples, and evals all live in one repo.
+`pstack` is an operator-grade repository of AI skills for Palantir deployments. It is built for deployment strategists who need an execution contract, not a loose collection of prompts: phase gates, artifact handoffs, governance boundaries, examples, evals, and a gated learning loop all live in one repo.
 
 ## What This Is
 
-`pstack` turns one deployment strategist into a conductor for discovery, ontology, data, application, QA, security, deployment, and retrospective work. The repo is organized around a strict artifact chain so downstream skills consume stable documents rather than improvising off chat history.
+`pstack` turns one deployment strategist into a conductor for discovery, ontology, data, application, QA, security, deployment, retrospective work, and repo improvement. The repo is organized around a strict artifact chain so downstream skills consume stable documents rather than improvising off chat history.
 
 ## Who This Is For
 
@@ -110,6 +110,13 @@ The skill inventory below is generated from `conductor.json`.
 |-------|---------|-------|----------|
 | `/deployment-retro` | Captures engagement metrics, friction points, lessons learned, and next-wave opportunities. | `BOOTCAMP-SCOPE.md`, `ONTOLOGY-ARCHITECTURE.md`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `DEPLOYMENT-PLAN.md`, `TRAINING-MATERIALS.md` | `RETRO-REPORT.md` |
 
+### Improve
+
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/memory-curator` | Extracts reusable lessons from completed engagements into structured episodic and semantic memory. | `BOOTCAMP-SCOPE.md`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `RETRO-REPORT.md` | `MEMORY-EPISODE.json` |
+| `/skill-improver` | Turns structured memory into bounded repo-improvement proposals targeting skills, templates, PROGRAM.md, and conductor metadata. | `MEMORY-EPISODE.json`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `RETRO-REPORT.md` | `IMPROVEMENT-PROPOSAL.md` |
+
 ### Safety
 
 | Skill | Purpose | Reads | Produces |
@@ -130,6 +137,7 @@ The skill inventory below is generated from `conductor.json`.
 | Test | Run end-to-end validation and produce a deployment verdict. | `/foundry-qa` | `QA-REPORT.md` |
 | Ship | Deploy safely and enable adoption. | `/apollo-deployer`, `/training-writer` | `DEPLOYMENT-PLAN.md`, `TRAINING-MATERIALS.md` |
 | Reflect | Capture lessons, metrics, and next-phase opportunities. | `/deployment-retro` | `RETRO-REPORT.md` |
+| Improve | Convert engagement evidence into reusable memory, improvement proposals, and gated repo evolution. | `/memory-curator`, `/skill-improver` | `MEMORY-EPISODE.json`, `IMPROVEMENT-PROPOSAL.md` |
 
 ## Artifact Chain
 
@@ -152,6 +160,8 @@ QA-REPORT.md -> /apollo-deployer, /deployment-retro
 DEPLOYMENT-PLAN.md -> /training-writer, /deployment-retro
 TRAINING-MATERIALS.md -> /deployment-retro
 RETRO-REPORT.md -> end of chain
+MEMORY-EPISODE.json -> /skill-improver
+IMPROVEMENT-PROPOSAL.md -> end of chain
 ```
 
 ## Operator Governance
@@ -164,8 +174,9 @@ Use `PROGRAM.md` as the field manual. It defines:
 - what requires explicit DS approval
 - how to stop, retry, or split an engagement when the artifact chain breaks
 
-## Examples And Evals
+## Memory, Examples, And Evals
 
+- `memory/` — structured episodic memory, semantic patterns, operator memory, and gated improvement proposals
 - `examples/engagements/acme-supply-chain/` — control-tower style supply chain engagement
 - `examples/engagements/northstar-healthcare/` — patient-flow style healthcare engagement
 - `evals/` — benchmark cases, artifact rubrics, and reference scorecards
@@ -174,6 +185,7 @@ Use `PROGRAM.md` as the field manual. It defines:
 
 - `PROGRAM.md`: operator manual and execution contract
 - `conductor.json`: source of truth for phases, skills, artifacts, governance, and examples
+- `memory/`: self-improvement substrate for episodes, semantic memory, and proposal drafts
 - `docs/skills.md`: generated detailed skill and artifact registry
 - `templates/`: artifact templates for every conductor artifact
 - `examples/`: end-to-end synthetic engagements

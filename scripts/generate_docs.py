@@ -118,11 +118,11 @@ def render_readme(conductor: dict) -> str:
 
 **{conductor['tagline']}**
 
-`pstack` is an operator-grade repository of AI skills for Palantir deployments. It is built for deployment strategists who need an execution contract, not a loose collection of prompts: phase gates, artifact handoffs, governance boundaries, examples, and evals all live in one repo.
+`pstack` is an operator-grade repository of AI skills for Palantir deployments. It is built for deployment strategists who need an execution contract, not a loose collection of prompts: phase gates, artifact handoffs, governance boundaries, examples, evals, and a gated learning loop all live in one repo.
 
 ## What This Is
 
-`pstack` turns one deployment strategist into a conductor for discovery, ontology, data, application, QA, security, deployment, and retrospective work. The repo is organized around a strict artifact chain so downstream skills consume stable documents rather than improvising off chat history.
+`pstack` turns one deployment strategist into a conductor for discovery, ontology, data, application, QA, security, deployment, retrospective work, and repo improvement. The repo is organized around a strict artifact chain so downstream skills consume stable documents rather than improvising off chat history.
 
 ## Who This Is For
 
@@ -185,8 +185,9 @@ Use `PROGRAM.md` as the field manual. It defines:
 - what requires explicit DS approval
 - how to stop, retry, or split an engagement when the artifact chain breaks
 
-## Examples And Evals
+## Memory, Examples, And Evals
 
+- `memory/` — structured episodic memory, semantic patterns, operator memory, and gated improvement proposals
 - `examples/engagements/acme-supply-chain/` — control-tower style supply chain engagement
 - `examples/engagements/northstar-healthcare/` — patient-flow style healthcare engagement
 - `evals/` — benchmark cases, artifact rubrics, and reference scorecards
@@ -195,6 +196,7 @@ Use `PROGRAM.md` as the field manual. It defines:
 
 - `PROGRAM.md`: operator manual and execution contract
 - `conductor.json`: source of truth for phases, skills, artifacts, governance, and examples
+- `memory/`: self-improvement substrate for episodes, semantic memory, and proposal drafts
 - `docs/skills.md`: generated detailed skill and artifact registry
 - `templates/`: artifact templates for every conductor artifact
 - `examples/`: end-to-end synthetic engagements

@@ -164,6 +164,26 @@ _This document is generated from `conductor.json`._
 **Approval threshold:** Sharing sensitive customer lessons beyond the project team
 **Allowed tools:** `Bash`, `Read`, `Write`, `Edit`, `AskUserQuestion`, `WebSearch`
 
+### Improve
+
+#### `/memory-curator` — Memory Curator
+**Purpose:** Extracts reusable lessons from completed engagements into structured episodic and semantic memory.
+**Reads:** `BOOTCAMP-SCOPE.md`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `RETRO-REPORT.md`
+**Produces:** `MEMORY-EPISODE.json`
+**Hard gate:** Do not change canonical skills or templates directly. Only write structured memory artifacts and semantic pattern updates.
+**Writes scope:** memory/episodes/*.json and memory/semantic/*.md only
+**Approval threshold:** Promoting customer-specific lessons into global patterns; Capturing sensitive lessons that may need redaction
+**Allowed tools:** `Bash`, `Read`, `Write`, `Edit`, `AskUserQuestion`, `WebSearch`
+
+#### `/skill-improver` — Skill Improver
+**Purpose:** Turns structured memory into bounded repo-improvement proposals targeting skills, templates, PROGRAM.md, and conductor metadata.
+**Reads:** `MEMORY-EPISODE.json`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `RETRO-REPORT.md`
+**Produces:** `IMPROVEMENT-PROPOSAL.md`
+**Hard gate:** Do not mutate canonical files directly. Draft proposals only, and require eval plus human review before promotion.
+**Writes scope:** memory/proposals/*.md only
+**Approval threshold:** Promoting a proposal into canonical repo files; Any change that broadens safety, governance, or production behavior
+**Allowed tools:** `Bash`, `Read`, `Write`, `Edit`, `AskUserQuestion`, `WebSearch`
+
 ### Safety
 
 #### `/careful` — Careful Mode
@@ -213,6 +233,8 @@ _This document is generated from `conductor.json`._
 | `DEPLOYMENT-PLAN.md` | ship | `/apollo-deployer` | `templates/DEPLOYMENT-PLAN.md` | `/training-writer`, `/deployment-retro` |
 | `TRAINING-MATERIALS.md` | ship | `/training-writer` | `templates/TRAINING-MATERIALS.md` | `/deployment-retro` |
 | `RETRO-REPORT.md` | reflect | `/deployment-retro` | `templates/RETRO-REPORT.md` | End of chain |
+| `MEMORY-EPISODE.json` | improve | `/memory-curator` | `memory/templates/MEMORY-EPISODE.template.json` | `/skill-improver` |
+| `IMPROVEMENT-PROPOSAL.md` | improve | `/skill-improver` | `memory/templates/IMPROVEMENT-PROPOSAL.md` | End of chain |
 
 ## Governance Matrix
 
@@ -237,6 +259,8 @@ _This document is generated from `conductor.json`._
 | `/careful` | `safety_mode` | All destructive operations | Ontology deletion; Pipeline deletion; Published app changes; Production agent mutation; Permission changes; Production deploy or rollback |
 | `/freeze` | `safety_mode` | Changing the frozen scope; Disabling freeze when work remains in customer environments | Block edits outside the specified scope |
 | `/guard` | `safety_mode` | Changing or disabling safety posture in production environments | All boundaries from careful plus all scope boundaries from freeze |
+| `/memory-curator` | `internal_review` | Promoting customer-specific lessons into global patterns; Capturing sensitive lessons that may need redaction | Do not overwrite existing episodes without preserving prior evidence |
+| `/skill-improver` | `internal_review` | Promoting a proposal into canonical repo files; Any change that broadens safety, governance, or production behavior | No direct edits to core skills, templates, or PROGRAM.md from improvement mode |
 
 ## Artifact Chain Summary
 
@@ -257,4 +281,6 @@ QA-REPORT.md -> /apollo-deployer, /deployment-retro
 DEPLOYMENT-PLAN.md -> /training-writer, /deployment-retro
 TRAINING-MATERIALS.md -> /deployment-retro
 RETRO-REPORT.md -> end of chain
+MEMORY-EPISODE.json -> /skill-improver
+IMPROVEMENT-PROPOSAL.md -> end of chain
 ```

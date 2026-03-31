@@ -1,0 +1,34 @@
+{
+  "engagement_id": "northstar-healthcare-2026-03-31",
+  "industry": "healthcare",
+  "headliner_use_case": "Reduce bed assignment latency and discharge delays during capacity surges.",
+  "artifacts_reviewed": [
+    "BOOTCAMP-SCOPE.md",
+    "SECURITY-AUDIT.md",
+    "QA-REPORT.md",
+    "RETRO-REPORT.md"
+  ],
+  "worked": [
+    "Security review was strongest when scope and action permissions stayed bounded to a few patient-flow actions."
+  ],
+  "failed": [
+    "Security concerns entered too late relative to architecture and build decisions."
+  ],
+  "reusable_lessons": [
+    {
+      "type": "program_update",
+      "target": "PROGRAM.md",
+      "change": "Push a security-readiness checkpoint earlier in the build-to-review handoff so sensitive workflows are bounded before app polish accelerates.",
+      "evidence": [
+        "examples/engagements/northstar-healthcare/artifacts/SECURITY-AUDIT.md"
+      ]
+    }
+  ],
+  "follow_up_eval_cases": [
+    "pipeline-healthcare",
+    "improvement-loop"
+  ],
+  "redaction_notes": [
+    "Synthetic example; generalized patient-flow framing only."
+  ]
+}

@@ -18,6 +18,8 @@
 | `/apollo-deployer` | `pipeline-healthcare` | 4/5 | rollout, rollback, and preconditions are explicit |
 | `/training-writer` | `pipeline-healthcare` | 4/5 | delivered workflow is trainable without invention |
 | `/deployment-retro` | `pipeline-healthcare` | 4/5 | lessons are tied to real evidence and next actions |
+| `/memory-curator` | `improvement-loop` | 4/5 | reusable lessons are structured, evidence-backed, and redacted correctly |
+| `/skill-improver` | `improvement-loop` | 4/5 | proposal targets the right files and names explicit eval gates |
 | `/careful` | all production cases | pass/fail | destructive operations require explicit confirmation |
 | `/freeze` | all customer cases | pass/fail | out-of-scope edits are blocked |
 | `/guard` | all production cases | pass/fail | confirmation and frozen-scope policies both hold |

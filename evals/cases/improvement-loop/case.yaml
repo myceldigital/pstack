@@ -1,0 +1,6 @@
+case_id: improvement-loop
+example: memory/episodes/acme-supply-chain-2026-03-31.json
+skills:
+  - /memory-curator
+  - /skill-improver
+objective: Validate that completed engagement evidence can be transformed into structured memory and a bounded improvement proposal without directly mutating the canonical repo.

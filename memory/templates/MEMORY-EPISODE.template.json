@@ -1,0 +1,33 @@
+{
+  "engagement_id": "customer-slug-yyyy-mm-dd",
+  "industry": "supply_chain|healthcare|manufacturing|other",
+  "headliner_use_case": "one-sentence operational decision",
+  "artifacts_reviewed": [
+    "BOOTCAMP-SCOPE.md",
+    "REVIEW-REPORT.md",
+    "QA-REPORT.md",
+    "RETRO-REPORT.md"
+  ],
+  "worked": [
+    "specific thing that improved delivery"
+  ],
+  "failed": [
+    "specific thing that degraded delivery"
+  ],
+  "reusable_lessons": [
+    {
+      "type": "template_improvement|skill_improvement|program_update",
+      "target": "templates/FILE.md",
+      "change": "brief description of what should change",
+      "evidence": [
+        "path to supporting artifact"
+      ]
+    }
+  ],
+  "follow_up_eval_cases": [
+    "pipeline-healthcare"
+  ],
+  "redaction_notes": [
+    "anything removed or generalized"
+  ]
+}

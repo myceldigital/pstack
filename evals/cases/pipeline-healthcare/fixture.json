@@ -1,0 +1,104 @@
+{
+  "case_id": "pipeline-healthcare",
+  "description": "Structured fixture for patient-flow build, review, and operational readiness surfaces.",
+  "targets": [
+    {
+      "path": "templates/DATA-CONNECTION-STATUS.md",
+      "assertions": [
+        {
+          "id": "summary-section",
+          "type": "contains",
+          "value": "## Summary",
+          "weight": 1
+        },
+        {
+          "id": "health-monitoring",
+          "type": "contains",
+          "value": "## Health Monitoring",
+          "weight": 1
+        },
+        {
+          "id": "blockers-decisions",
+          "type": "contains",
+          "value": "## Blockers And Decisions",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "templates/PIPELINE-BUILD-STATUS.md",
+      "assertions": [
+        {
+          "id": "build-summary",
+          "type": "contains",
+          "value": "## Build Summary",
+          "weight": 1
+        },
+        {
+          "id": "quality-checks",
+          "type": "contains",
+          "value": "## Quality Checks",
+          "weight": 1
+        },
+        {
+          "id": "backing-readiness",
+          "type": "contains",
+          "value": "## Backing Readiness",
+          "weight": 1
+        },
+        {
+          "id": "exception-path-readiness-section",
+          "type": "contains",
+          "value": "## Exception Path Readiness",
+          "weight": 2
+        },
+        {
+          "id": "manual-fallback-column",
+          "type": "contains",
+          "value": "Manual fallback",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "evals/ARTIFACT-RUBRICS.md",
+      "assertions": [
+        {
+          "id": "pipeline-build-rubric",
+          "type": "contains",
+          "value": "## PIPELINE-BUILD-STATUS.md",
+          "weight": 1
+        },
+        {
+          "id": "no-hidden-manual-steps",
+          "type": "contains",
+          "value": "Must not hide partial manual steps.",
+          "weight": 1
+        },
+        {
+          "id": "explicit-exception-path-rubric",
+          "type": "contains",
+          "value": "Must make exception-path readiness explicit when any workflow remains manual, partial, or fallback-only.",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "path": "PROGRAM.md",
+      "assertions": [
+        {
+          "id": "review-phase",
+          "type": "contains",
+          "value": "### 5. Review",
+          "weight": 1
+        },
+        {
+          "id": "test-phase",
+          "type": "contains",
+          "value": "### 6. Test",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

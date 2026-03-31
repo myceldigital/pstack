@@ -73,6 +73,11 @@
       "goal": "Capture lessons, metrics, and next-phase opportunities."
     },
     {
+      "id": "improve",
+      "label": "Improve",
+      "goal": "Convert engagement evidence into reusable memory, improvement proposals, and gated repo evolution."
+    },
+    {
       "id": "safety",
       "label": "Safety",
       "goal": "Prevent out-of-scope or destructive changes in customer environments."
@@ -339,6 +344,34 @@
       "example_paths": [
         "examples/engagements/acme-supply-chain/artifacts/RETRO-REPORT.md",
         "examples/engagements/northstar-healthcare/artifacts/RETRO-REPORT.md"
+      ],
+      "consumers": []
+    },
+    {
+      "id": "memory_episode",
+      "filename": "MEMORY-EPISODE.json",
+      "phase": "improve",
+      "owner_skill": "memory-curator",
+      "template_path": "memory/templates/MEMORY-EPISODE.template.json",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#memory-episodejson",
+      "example_paths": [
+        "memory/episodes/acme-supply-chain-2026-03-31.json",
+        "memory/episodes/northstar-healthcare-2026-03-31.json"
+      ],
+      "consumers": [
+        "skill-improver"
+      ]
+    },
+    {
+      "id": "improvement_proposal",
+      "filename": "IMPROVEMENT-PROPOSAL.md",
+      "phase": "improve",
+      "owner_skill": "skill-improver",
+      "template_path": "memory/templates/IMPROVEMENT-PROPOSAL.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#improvement-proposalmd",
+      "example_paths": [
+        "memory/proposals/2026-03-31-exception-path-coverage.md",
+        "memory/proposals/2026-03-31-security-gate-earlier.md"
       ],
       "consumers": []
     }
@@ -1033,6 +1066,82 @@
         "All boundaries from careful plus all scope boundaries from freeze"
       ],
       "governance_tier": "safety_mode"
+    },
+    {
+      "id": "memory-curator",
+      "invoke": "/memory-curator",
+      "title": "Memory Curator",
+      "phase": "improve",
+      "type": "specialist",
+      "path": "skills/memory-curator/SKILL.md",
+      "summary": "Extracts reusable lessons from completed engagements into structured episodic and semantic memory.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "review_report",
+        "qa_report",
+        "retro_report"
+      ],
+      "produces_artifacts": [
+        "memory_episode"
+      ],
+      "downstream_skills": [
+        "skill-improver"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not change canonical skills or templates directly. Only write structured memory artifacts and semantic pattern updates.",
+      "writes_scope": "memory/episodes/*.json and memory/semantic/*.md only",
+      "approval_required_for": [
+        "Promoting customer-specific lessons into global patterns",
+        "Capturing sensitive lessons that may need redaction"
+      ],
+      "destructive_boundaries": [
+        "Do not overwrite existing episodes without preserving prior evidence"
+      ],
+      "governance_tier": "internal_review"
+    },
+    {
+      "id": "skill-improver",
+      "invoke": "/skill-improver",
+      "title": "Skill Improver",
+      "phase": "improve",
+      "type": "specialist",
+      "path": "skills/skill-improver/SKILL.md",
+      "summary": "Turns structured memory into bounded repo-improvement proposals targeting skills, templates, PROGRAM.md, and conductor metadata.",
+      "reads_artifacts": [
+        "memory_episode",
+        "review_report",
+        "qa_report",
+        "retro_report"
+      ],
+      "produces_artifacts": [
+        "improvement_proposal"
+      ],
+      "downstream_skills": [],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not mutate canonical files directly. Draft proposals only, and require eval plus human review before promotion.",
+      "writes_scope": "memory/proposals/*.md only",
+      "approval_required_for": [
+        "Promoting a proposal into canonical repo files",
+        "Any change that broadens safety, governance, or production behavior"
+      ],
+      "destructive_boundaries": [
+        "No direct edits to core skills, templates, or PROGRAM.md from improvement mode"
+      ],
+      "governance_tier": "internal_review"
     }
   ],
   "examples": [
@@ -1072,6 +1181,42 @@
         "foundry-qa"
       ],
       "example_id": "northstar-healthcare"
+    },
+    {
+      "id": "improvement-loop",
+      "path": "evals/cases/improvement-loop",
+      "target_skills": [
+        "memory-curator",
+        "skill-improver"
+      ],
+      "example_id": "acme-supply-chain"
     }
-  ]
+  ],
+  "memory": {
+    "root": "memory",
+    "episode_dir": "memory/episodes",
+    "semantic_dir": "memory/semantic",
+    "operator_dir": "memory/operator",
+    "proposal_dir": "memory/proposals",
+    "template_dir": "memory/templates",
+    "schema_dir": "memory/schemas",
+    "evaluation_script": "scripts/evaluate_improvement.py",
+    "promotion_script": "scripts/promote_improvement.py",
+    "replay_script": "scripts/replay_improvement_case.py",
+    "proposal_targets": [
+      "PROGRAM.md",
+      "conductor.json",
+      "skills",
+      "templates",
+      "evals",
+      "docs/skills.md",
+      "README.md"
+    ],
+    "promotion_rule": "human_review_plus_eval_pass",
+    "source_artifacts": [
+      "REVIEW-REPORT.md",
+      "QA-REPORT.md",
+      "RETRO-REPORT.md"
+    ]
+  }
 }

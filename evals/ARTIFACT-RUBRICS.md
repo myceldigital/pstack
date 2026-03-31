@@ -31,6 +31,7 @@ Use these rubrics to decide whether an artifact is genuinely fit for downstream 
 - Must show ontology-ready outputs and quality evidence.
 - Must identify the transform or dataset behind each dependency.
 - Must not hide partial manual steps.
+- Must make exception-path readiness explicit when any workflow remains manual, partial, or fallback-only.
 
 ## WORKSHOP-BUILD-STATUS.md
 - Must show the actual operator flow and state of key pages/actions.
@@ -81,3 +82,13 @@ Use these rubrics to decide whether an artifact is genuinely fit for downstream 
 - Must tie lessons back to the original scope and outcomes.
 - Must identify what changes next time.
 - Must not sanitize avoidable mistakes.
+
+## MEMORY-EPISODE.json
+- Must distinguish reusable lessons from customer-local noise.
+- Must cite evidence for each reusable lesson.
+- Must not contain secrets, raw customer data, or unredacted sensitive detail.
+
+## IMPROVEMENT-PROPOSAL.md
+- Must name the right target layer and target files.
+- Must state expected benefit and required eval cases.
+- Must not directly mutate canonical repo behavior or widen scope without review.

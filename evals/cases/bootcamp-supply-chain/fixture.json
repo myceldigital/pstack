@@ -1,0 +1,75 @@
+{
+  "case_id": "bootcamp-supply-chain",
+  "description": "Structured fixture for decision-centered discovery and early architecture outputs.",
+  "targets": [
+    {
+      "path": "examples/engagements/acme-supply-chain/artifacts/BOOTCAMP-SCOPE.md",
+      "assertions": [
+        {
+          "id": "headliner-section",
+          "type": "contains",
+          "value": "## Headliner Use Case",
+          "weight": 1
+        },
+        {
+          "id": "data-inventory",
+          "type": "contains",
+          "value": "## Data Inventory",
+          "weight": 1
+        },
+        {
+          "id": "risks",
+          "type": "contains",
+          "value": "## Risks",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "examples/engagements/acme-supply-chain/artifacts/ONTOLOGY-VISION.md",
+      "assertions": [
+        {
+          "id": "core-entity-set",
+          "type": "contains",
+          "value": "## Core Entity Set",
+          "weight": 1
+        },
+        {
+          "id": "key-relationships",
+          "type": "contains",
+          "value": "## Key Relationships",
+          "weight": 1
+        },
+        {
+          "id": "rollout-view",
+          "type": "contains",
+          "value": "## Rollout View",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "examples/engagements/acme-supply-chain/artifacts/PIPELINE-ARCHITECTURE.md",
+      "assertions": [
+        {
+          "id": "source-to-ontology",
+          "type": "contains",
+          "value": "## Source To Ontology Flow",
+          "weight": 1
+        },
+        {
+          "id": "scheduling",
+          "type": "contains",
+          "value": "## Scheduling",
+          "weight": 1
+        },
+        {
+          "id": "quality-gates",
+          "type": "contains",
+          "value": "## Quality Gates",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pstack Operator Profile",
+  "type": "object",
+  "properties": {
+    "operator_id": {
+      "type": "string"
+    },
+    "approval_style": {
+      "type": "string"
+    },
+    "preferred_decision_format": {
+      "type": "string"
+    },
+    "known_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

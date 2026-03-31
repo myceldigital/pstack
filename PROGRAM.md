@@ -340,6 +340,43 @@ Failure modes:
 - retrospective is sanitized
 - no distinction between avoidable mistakes and unavoidable constraints
 
+### 9. Improve
+
+Primary skills:
+
+- `/memory-curator`
+- `/skill-improver`
+
+Required outputs:
+
+- `MEMORY-EPISODE.json`
+- `IMPROVEMENT-PROPOSAL.md`
+
+Exit criteria:
+
+- the episode captures reusable lessons with evidence
+- local accidents are separated from reusable patterns
+- the proposal names the right target layer
+- required eval cases are explicit
+- the promotion comparison shows the candidate beats or matches `HEAD` on the required evals
+- no canonical repo file is changed directly from improvement mode
+
+Failure modes:
+
+- one-off customer preferences are promoted into global behavior
+- memory stores raw noise instead of structured evidence
+- a proposal names no eval cases
+- self-improvement becomes a license to mutate production-facing skills without review
+
+Decision owner:
+
+- DS or repo maintainer for promotion into canonical files
+
+If gate fails:
+
+- `retry` if the lesson is real but underspecified
+- `stop` if there is no credible reusable pattern to promote
+
 ## Artifact Acceptance Standard
 
 Every artifact must answer four questions before it can be treated as upstream truth:
@@ -430,6 +467,7 @@ The contract is:
 - every skill has an approval threshold
 - destructive boundaries are named, not implied
 - safety modes are part of normal operations, not emergency theater
+- learning mode writes memory and proposals, not canonical behavior
 
 ## First-Week Cadence
 
@@ -479,6 +517,7 @@ The contract is:
 - skills
 - artifacts
 - governance metadata
+- memory layout
 - examples
 - eval case inventory
 

@@ -1,0 +1,130 @@
+{
+  "case_id": "improvement-loop",
+  "description": "Structured fixture for the gated memory and improvement loop.",
+  "targets": [
+    {
+      "path": "memory/templates/MEMORY-EPISODE.template.json",
+      "assertions": [
+        {
+          "id": "reusable-lessons-key",
+          "type": "contains",
+          "value": "\"reusable_lessons\"",
+          "weight": 1
+        },
+        {
+          "id": "follow-up-evals-key",
+          "type": "contains",
+          "value": "\"follow_up_eval_cases\"",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "memory/templates/IMPROVEMENT-PROPOSAL.md",
+      "assertions": [
+        {
+          "id": "evaluate-command",
+          "type": "contains",
+          "value": "python3 scripts/evaluate_improvement.py --proposal",
+          "weight": 1
+        },
+        {
+          "id": "replay-command",
+          "type": "contains",
+          "value": "python3 scripts/replay_improvement_case.py --proposal",
+          "weight": 1
+        },
+        {
+          "id": "promote-command",
+          "type": "contains",
+          "value": "python3 scripts/promote_improvement.py --proposal",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "PROGRAM.md",
+      "assertions": [
+        {
+          "id": "improve-phase",
+          "type": "contains",
+          "value": "### 9. Improve",
+          "weight": 1
+        },
+        {
+          "id": "no-direct-canonical-mutation",
+          "type": "contains",
+          "value": "no canonical repo file is changed directly from improvement mode",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/skills.md",
+      "assertions": [
+        {
+          "id": "memory-curator-doc",
+          "type": "contains",
+          "value": "#### `/memory-curator` — Memory Curator",
+          "weight": 1
+        },
+        {
+          "id": "skill-improver-doc",
+          "type": "contains",
+          "value": "#### `/skill-improver` — Skill Improver",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "skills/memory-curator/SKILL.md",
+      "assertions": [
+        {
+          "id": "no-canonical-edit",
+          "type": "contains",
+          "value": "Do NOT edit canonical skills, templates, `PROGRAM.md`, or `conductor.json`.",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "skills/skill-improver/SKILL.md",
+      "assertions": [
+        {
+          "id": "proposal-only",
+          "type": "contains",
+          "value": "Your output is a proposal only.",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/evaluate_improvement.py",
+      "assertions": [
+        {
+          "id": "required-sections",
+          "type": "contains",
+          "value": "REQUIRED_PROPOSAL_SECTIONS",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/promote_improvement.py",
+      "assertions": [
+        {
+          "id": "head-baseline",
+          "type": "contains",
+          "value": "HEAD:{path}",
+          "weight": 1
+        },
+        {
+          "id": "promotable-gate",
+          "type": "contains",
+          "value": "def promotable",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "engagement_id": "acme-supply-chain-2026-03-31",
+  "industry": "supply_chain",
+  "headliner_use_case": "Prioritize expedite decisions for at-risk shipments before SLAs break.",
+  "artifacts_reviewed": [
+    "BOOTCAMP-SCOPE.md",
+    "REVIEW-REPORT.md",
+    "QA-REPORT.md",
+    "RETRO-REPORT.md"
+  ],
+  "worked": [
+    "Decision-centered bootcamp framing made the headliner use case obvious.",
+    "Artifact-first handoff from architecture into build reduced parallel-session drift."
+  ],
+  "failed": [
+    "Exception-path readiness stayed too implicit in build status and review outputs."
+  ],
+  "reusable_lessons": [
+    {
+      "type": "template_improvement",
+      "target": "templates/PIPELINE-BUILD-STATUS.md",
+      "change": "Force a dedicated exception-path readiness section so partial manual flows are obvious before review.",
+      "evidence": [
+        "examples/engagements/acme-supply-chain/artifacts/PIPELINE-BUILD-STATUS.md"
+      ]
+    }
+  ],
+  "follow_up_eval_cases": [
+    "bootcamp-supply-chain",
+    "improvement-loop"
+  ],
+  "redaction_notes": [
+    "Synthetic example; no customer secrets present."
+  ]
+}
