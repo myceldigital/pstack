@@ -1,184 +1,193 @@
 # pstack — Palantir Deployment Strategist AI Team
 
-**Turn Claude Code into a virtual Palantir deployment team.**
+**Turn one deployment strategist into a disciplined multi-agent Palantir delivery team.**
 
-pstack is a collection of SKILL.md files that give AI agents structured roles
-for Palantir platform deployment. Each skill is a specialist: ontology architect,
-pipeline engineer, Workshop builder, AIP agent designer, security officer,
-Apollo deployer, and more.
+`pstack` is an operator-grade repository of AI skills for Palantir deployments. It is built for deployment strategists who need an execution contract, not a loose collection of prompts: phase gates, artifact handoffs, governance boundaries, examples, and evals all live in one repo.
 
-One deployment strategist. 16 agents. Bootcamp in days, not weeks.
+## What This Is
 
-## The problem
+`pstack` turns one deployment strategist into a conductor for discovery, ontology, data, application, QA, security, deployment, and retrospective work. The repo is organized around a strict artifact chain so downstream skills consume stable documents rather than improvising off chat history.
 
-A Palantir deployment strategist must simultaneously hold deep expertise in:
-data connection, pipeline development, ontology design, Workshop configuration,
-AIP agent engineering, OSDK application development, security posture, Apollo
-deployment, and customer training. During a 5-day AIP Bootcamp, cognitive
-bandwidth — not platform capability — is the bottleneck.
+## Who This Is For
 
-## The solution
+- Deployment strategists running AIP bootcamps or compressed phase-zero engagements
+- Foundry builders who need a disciplined artifact chain across ontology, pipeline, app, and QA work
+- Operators managing multiple parallel AI sessions and wanting explicit phase gates
 
-pstack distributes expertise across 16 specialized agents while keeping the
-DS in the conductor's seat. Each agent carries deep, system-level knowledge
-of its Palantir domain and produces persistent artifacts that chain together
-through a disciplined sprint pipeline.
+## Who This Is Not For
 
-```
-Discover → Vision → Architecture → Build → Review → Test → Deploy → Reflect
-```
+- Teams looking for a generic prompt pack without phase discipline
+- Pure software projects with no Foundry, ontology, or Apollo deployment surface
+- Production changes without a human deployment strategist owning approvals
 
-Run 5-10 parallel agent sessions. Check in only on decisions that matter.
-Let the agents handle the domain expertise. You handle the customer relationship
-and strategic judgment.
+## First Hour
 
-## Quick start
+1. Clone the repo and run `./install.sh`.
+2. Start with `/bootcamp` and produce `BOOTCAMP-SCOPE.md`.
+3. Run `/ontology-vision` and `/pipeline-plan` in parallel once the use case is locked.
+4. Promote only the headliner use case into `/ontology-architect`.
+5. Do not start build skills until the architecture artifacts are reviewed.
+
+## First Week
+
+1. Day 1: Lock the customer problem, use-case ranking, stakeholder map, and data inventory.
+2. Day 2: Finalize ontology and pipeline architecture with explicit gating assumptions.
+3. Day 3-4: Run build skills in parallel behind the artifact chain.
+4. Day 4-5: Run review, security, and QA before any Apollo cutover discussion.
+5. End of week: Produce deployment plan, training materials, and retrospective so the next phase starts from evidence instead of memory.
+
+## Quick Start
 
 ```bash
-# Install pstack skills into Claude Code
-git clone https://github.com/your-org/pstack.git
-cd pstack && ./install.sh
+git clone https://github.com/myceldigital/pstack.git
+cd pstack
+./install.sh
 
-# Start a new engagement
+# Start with structured discovery
 /bootcamp
-
-# After scoping, run the planning pipeline
 /ontology-vision
-/ontology-architect
 /pipeline-plan
-
-# Build in parallel sessions
-/data-connector    # Session 1: onboard data
-/pipeline-builder  # Session 2: build transforms
-/workshop-builder  # Session 3: build apps
-/aip-architect     # Session 4: configure agents
-
-# Review and ship
-/foundry-reviewer
-/foundry-security
-/foundry-qa
-/apollo-deployer
-/training-writer
-
-# Reflect
-/deployment-retro
+/ontology-architect
 ```
 
-## Available skills
+## Skills
 
-Skills live in `skills/`. Invoke them by name (e.g., `/bootcamp`).
+The skill inventory below is generated from `conductor.json`.
 
-### Think layer — discovery and scoping
+### Discover
 
-| Skill | What it does |
-|-------|-------------|
-| `/bootcamp` | Start here. Structured discovery using AIP Bootcamp methodology. Produces `BOOTCAMP-SCOPE.md`. |
-| `/ontology-vision` | Strategic ontology design. Finds the full digital twin hiding in the customer's request. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/bootcamp` | Structured discovery for new engagements; produces the bootcamp scope and use-case priority. | Customer brief / engagement context | `BOOTCAMP-SCOPE.md` |
 
-### Plan layer — architecture and design
+### Vision
 
-| Skill | What it does |
-|-------|-------------|
-| `/ontology-architect` | Lock ontology architecture: object types, links, actions, functions, interfaces, test plan. |
-| `/pipeline-plan` | Design data integration and transformation architecture. Source-to-ontology data flow. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/ontology-vision` | Expands the bootcamp scope into the full target digital twin and phased ontology vision. | `BOOTCAMP-SCOPE.md` | `ONTOLOGY-VISION.md` |
 
-### Build layer — implementation
+### Architecture
 
-| Skill | What it does |
-|-------|-------------|
-| `/data-connector` | Configure Data Connection sources, sync schedules, authentication, health monitoring. |
-| `/pipeline-builder` | Build transforms in Pipeline Builder and Code Repositories. Joins, filters, aggregations. |
-| `/workshop-builder` | Build Workshop apps. Layouts, widgets, events, actions, AIP agent embedding. |
-| `/aip-architect` | Design AIP agents in Agent Studio. Logic functions, prompts, evals, Automate workflows. |
-| `/osdk-developer` | Build custom OSDK applications. TypeScript/Python SDK, React integration, Developer Console. |
-| `/slate-builder` | Build Slate apps for pixel-perfect or complex external integrations. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/ontology-architect` | Locks object types, links, actions, functions, interfaces, and ontology test plans. | `BOOTCAMP-SCOPE.md`, `ONTOLOGY-VISION.md`, `PIPELINE-ARCHITECTURE.md` | `ONTOLOGY-ARCHITECTURE.md` |
+| `/pipeline-plan` | Designs source-to-ontology flow, connection strategy, transform DAGs, and scheduling. | `BOOTCAMP-SCOPE.md`, `ONTOLOGY-VISION.md` | `PIPELINE-ARCHITECTURE.md` |
 
-### Review and test layer
+### Build
 
-| Skill | What it does |
-|-------|-------------|
-| `/foundry-reviewer` | Structural audit: pipeline performance, ontology modeling, Workshop UX, AIP prompts. |
-| `/foundry-security` | Security audit: permissions, markings, agent scoping, OSDK scopes, data governance. |
-| `/foundry-qa` | End-to-end testing: AIP Evals, pipeline validation, Workshop flow testing, health score. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/data-connector` | Configures data connections, raw datasets, first-stage cleaning, and health monitoring. | `BOOTCAMP-SCOPE.md`, `PIPELINE-ARCHITECTURE.md` | `DATA-CONNECTION-STATUS.md` |
+| `/pipeline-builder` | Builds transforms, quality checks, and output datasets that back the ontology. | `DATA-CONNECTION-STATUS.md`, `PIPELINE-ARCHITECTURE.md`, `ONTOLOGY-ARCHITECTURE.md` | `PIPELINE-BUILD-STATUS.md` |
+| `/workshop-builder` | Builds operational Workshop apps, wiring actions, variables, widgets, and flows. | `BOOTCAMP-SCOPE.md`, `ONTOLOGY-ARCHITECTURE.md` | `WORKSHOP-BUILD-STATUS.md` |
+| `/aip-architect` | Designs agent prompts, context scope, tools, evals, and Automate workflows. | `ONTOLOGY-ARCHITECTURE.md`, `WORKSHOP-BUILD-STATUS.md` | `AIP-AGENT-STATUS.md` |
+| `/osdk-developer` | Builds custom applications against the Ontology SDK when Workshop is insufficient. | `ONTOLOGY-ARCHITECTURE.md` | `OSDK-BUILD-STATUS.md` |
+| `/slate-builder` | Builds Slate apps for complex, pixel-precise, or deeply integrated user experiences. | `ONTOLOGY-ARCHITECTURE.md` | `SLATE-BUILD-STATUS.md` |
 
-### Ship layer — deployment and production
+### Review
 
-| Skill | What it does |
-|-------|-------------|
-| `/apollo-deployer` | Apollo deployment lifecycle: release channels, blue-green, rollback, air-gapped. |
-| `/training-writer` | Customer training materials: user guides, runbooks, training decks, CoE setup. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/foundry-reviewer` | Performs structural audit of pipeline, ontology, app, and agent deliverables. | `PIPELINE-BUILD-STATUS.md`, `WORKSHOP-BUILD-STATUS.md`, `AIP-AGENT-STATUS.md`, `OSDK-BUILD-STATUS.md`, `SLATE-BUILD-STATUS.md`, `ONTOLOGY-ARCHITECTURE.md` | `REVIEW-REPORT.md` |
+| `/foundry-security` | Audits permissions, markings, agent scoping, OAuth scopes, data governance, and deployment security. | `ONTOLOGY-ARCHITECTURE.md`, `AIP-AGENT-STATUS.md`, `OSDK-BUILD-STATUS.md`, `PIPELINE-BUILD-STATUS.md`, `WORKSHOP-BUILD-STATUS.md` | `SECURITY-AUDIT.md` |
 
-### Reflect layer
+### Test
 
-| Skill | What it does |
-|-------|-------------|
-| `/deployment-retro` | Structured retrospective: metrics, per-use-case analysis, trend tracking. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/foundry-qa` | Runs end-to-end QA, evals, and readiness scoring before deployment. | `REVIEW-REPORT.md`, `PIPELINE-BUILD-STATUS.md`, `WORKSHOP-BUILD-STATUS.md`, `AIP-AGENT-STATUS.md`, `SECURITY-AUDIT.md` | `QA-REPORT.md` |
 
-### Safety skills
+### Ship
 
-| Skill | What it does |
-|-------|-------------|
-| `/careful` | Warn before destructive operations (ontology deletions, pipeline overwrites). |
-| `/freeze` | Lock edits to specific Foundry project scope. |
-| `/guard` | Activate both careful + freeze at once. |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/apollo-deployer` | Manages release channels, deployment strategy, rollback, and post-deploy verification. | `QA-REPORT.md`, `SECURITY-AUDIT.md` | `DEPLOYMENT-PLAN.md` |
+| `/training-writer` | Produces customer guides, runbooks, decks, and enablement materials from the built system. | `DEPLOYMENT-PLAN.md`, `QA-REPORT.md`, `SECURITY-AUDIT.md`, `ONTOLOGY-ARCHITECTURE.md`, `WORKSHOP-BUILD-STATUS.md`, `AIP-AGENT-STATUS.md` | `TRAINING-MATERIALS.md` |
 
-## Sprint sequence
+### Reflect
 
-| Phase | Agent(s) | Artifact | Consumed by |
-|-------|----------|----------|-------------|
-| Discover | `/bootcamp` | `BOOTCAMP-SCOPE.md` | `/ontology-vision`, `/pipeline-plan` |
-| Vision | `/ontology-vision` | `ONTOLOGY-VISION.md` | `/ontology-architect` |
-| Architecture | `/ontology-architect` + `/pipeline-plan` | `ONTOLOGY-ARCHITECTURE.md` + `PIPELINE-ARCHITECTURE.md` | All build agents |
-| Data onboarding | `/data-connector` | Working connections + raw datasets | `/pipeline-builder` |
-| Pipeline build | `/pipeline-builder` | Clean output datasets | `/ontology-architect` (backing) |
-| App build | `/workshop-builder` + `/aip-architect` + `/osdk-developer` | Working apps + agents | Review agents |
-| Review | `/foundry-reviewer` + `/foundry-security` | Review reports + auto-fixes | Build agents (fix loop) |
-| Test | `/foundry-qa` | Eval suites + health score | `/apollo-deployer` |
-| Deploy | `/apollo-deployer` + `/training-writer` | Deployed system + docs | End users |
-| Reflect | `/deployment-retro` | Retro report | Next phase |
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/deployment-retro` | Captures engagement metrics, friction points, lessons learned, and next-wave opportunities. | `BOOTCAMP-SCOPE.md`, `ONTOLOGY-ARCHITECTURE.md`, `REVIEW-REPORT.md`, `QA-REPORT.md`, `DEPLOYMENT-PLAN.md`, `TRAINING-MATERIALS.md` | `RETRO-REPORT.md` |
 
-## The conductor model
+### Safety
 
-You are the conductor. You manage 5-10 parallel agent sessions, each working on
-a different part of the deployment. Agents surface decisions in a consistent format:
+| Skill | Purpose | Reads | Produces |
+|-------|---------|-------|----------|
+| `/careful` | Requires explicit DS confirmation before destructive Foundry operations. | Customer brief / engagement context | Policy mode |
+| `/freeze` | Restricts all modifications to an explicit project, use-case, or environment scope. | Customer brief / engagement context | Policy mode |
+| `/guard` | Combines careful and freeze for maximum safety in production customer work. | Customer brief / engagement context | Policy mode |
 
+## Sprint Sequence
+
+| Phase | Goal | Primary skills | Primary artifacts |
+|-------|------|----------------|-------------------|
+| Discover | Lock the operational problem, customer context, and use-case priority. | `/bootcamp` | `BOOTCAMP-SCOPE.md` |
+| Vision | Model the full digital twin and target ontology direction. | `/ontology-vision` | `ONTOLOGY-VISION.md` |
+| Architecture | Turn the chosen use case into precise ontology and pipeline designs. | `/ontology-architect`, `/pipeline-plan` | `ONTOLOGY-ARCHITECTURE.md`, `PIPELINE-ARCHITECTURE.md` |
+| Build | Stand up data connections, transforms, apps, and agents in parallel. | `/data-connector`, `/pipeline-builder`, `/workshop-builder`, `/aip-architect`, `/osdk-developer`, `/slate-builder` | `DATA-CONNECTION-STATUS.md`, `PIPELINE-BUILD-STATUS.md`, `WORKSHOP-BUILD-STATUS.md`, `AIP-AGENT-STATUS.md`, `OSDK-BUILD-STATUS.md`, `SLATE-BUILD-STATUS.md` |
+| Review | Audit quality, security, and operability before testing. | `/foundry-reviewer`, `/foundry-security` | `REVIEW-REPORT.md`, `SECURITY-AUDIT.md` |
+| Test | Run end-to-end validation and produce a deployment verdict. | `/foundry-qa` | `QA-REPORT.md` |
+| Ship | Deploy safely and enable adoption. | `/apollo-deployer`, `/training-writer` | `DEPLOYMENT-PLAN.md`, `TRAINING-MATERIALS.md` |
+| Reflect | Capture lessons, metrics, and next-phase opportunities. | `/deployment-retro` | `RETRO-REPORT.md` |
+
+## Artifact Chain
+
+Every named artifact below has a template in `templates/`, rubric coverage in `evals/ARTIFACT-RUBRICS.md`, and live examples under `examples/engagements/`.
+
+```text
+BOOTCAMP-SCOPE.md -> /ontology-vision, /pipeline-plan, /ontology-architect, /data-connector, /workshop-builder
+ONTOLOGY-VISION.md -> /ontology-architect, /pipeline-plan
+ONTOLOGY-ARCHITECTURE.md -> /pipeline-builder, /workshop-builder, /aip-architect, /osdk-developer, /slate-builder, /foundry-security, /foundry-qa
+PIPELINE-ARCHITECTURE.md -> /data-connector, /ontology-architect, /pipeline-builder
+DATA-CONNECTION-STATUS.md -> /pipeline-builder
+PIPELINE-BUILD-STATUS.md -> /foundry-reviewer, /foundry-qa
+WORKSHOP-BUILD-STATUS.md -> /aip-architect, /foundry-reviewer, /foundry-qa
+AIP-AGENT-STATUS.md -> /foundry-reviewer, /foundry-security, /foundry-qa
+OSDK-BUILD-STATUS.md -> /foundry-reviewer, /foundry-security, /foundry-qa
+SLATE-BUILD-STATUS.md -> /foundry-reviewer, /foundry-qa
+REVIEW-REPORT.md -> /foundry-qa, /deployment-retro
+SECURITY-AUDIT.md -> /apollo-deployer, /deployment-retro
+QA-REPORT.md -> /apollo-deployer, /deployment-retro
+DEPLOYMENT-PLAN.md -> /training-writer, /deployment-retro
+TRAINING-MATERIALS.md -> /deployment-retro
+RETRO-REPORT.md -> end of chain
 ```
-CONTEXT: [what I found]
-QUESTION: [what needs deciding]
-RECOMMENDATION: Choose [X] because [reason]
 
-A) [option with trade-off]
-B) [option with trade-off]
-C) [option with trade-off]
-```
+## Operator Governance
 
-You make the call. They execute.
+Use `PROGRAM.md` as the field manual. It defines:
 
-## Key conventions
+- when an artifact is good enough to advance
+- what can run in parallel and what must block
+- when to activate `/careful`, `/freeze`, or `/guard`
+- what requires explicit DS approval
+- how to stop, retry, or split an engagement when the artifact chain breaks
 
-- SKILL.md files define each agent's role, knowledge, constraints, and output format.
-- Artifacts (design docs) chain between agents — each agent reads upstream docs and produces its own.
-- Every agent knows the Ontology concept and how its work connects to the overall deployment.
-- Safety skills (careful, freeze, guard) prevent destructive operations on customer environments.
-- All work products follow the templates in `templates/`.
+## Examples And Evals
 
-## Design principles
+- `examples/engagements/acme-supply-chain/` — control-tower style supply chain engagement
+- `examples/engagements/northstar-healthcare/` — patient-flow style healthcare engagement
+- `evals/` — benchmark cases, artifact rubrics, and reference scorecards
 
-See [ETHOS.md](ETHOS.md) for the seven principles that govern pstack:
+## Repo Structure
 
-1. **Boil the Ontology** — model the complete entity, not the minimum.
-2. **Cognitive gearing** — each agent thinks in its domain's vocabulary.
-3. **Artifact chains** — agents coordinate through documents, not direct communication.
-4. **DS decides, agents advise** — consistent decision format, human always decides.
-5. **Fix-first** — auto-fix obvious issues, surface only ambiguous decisions.
-6. **Search before building** — check Palantir templates and patterns first.
-7. **Progressive trust** — start human-in-the-loop, graduate to autonomous.
+- `PROGRAM.md`: operator manual and execution contract
+- `conductor.json`: source of truth for phases, skills, artifacts, governance, and examples
+- `docs/skills.md`: generated detailed skill and artifact registry
+- `templates/`: artifact templates for every conductor artifact
+- `examples/`: end-to-end synthetic engagements
+- `evals/`: benchmark cases, rubrics, and reference scorecards
+
+## Design Principles
+
+See `ETHOS.md` for the operating philosophy. `PROGRAM.md` is the execution layer that turns those principles into actual gating, concurrency, and approval rules.
 
 ## Requirements
 
-- Claude Code (Claude Max or Claude Team)
+- Claude Code (or equivalent environment that can consume the installed skills)
 - Familiarity with Palantir Foundry, AIP, and deployment workflows
-- Access to customer Foundry environment (for build/deploy phases)
+- A deployment strategist willing to own customer-facing decisions and approval gates
 
 ## License
 

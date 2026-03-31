@@ -1,0 +1,7 @@
+case_id: bootcamp-supply-chain
+example: examples/engagements/acme-supply-chain
+skills:
+  - /bootcamp
+  - /ontology-vision
+  - /pipeline-plan
+objective: Validate decision-centered discovery and architecture handoff for a supply-chain control tower.

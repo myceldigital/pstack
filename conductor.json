@@ -1,134 +1,1077 @@
 {
+  "conductor_version": "2.0.0",
   "name": "pstack",
-  "version": "1.0.0",
-  "description": "Palantir Deployment Strategist AI Team",
-  "skills": {
-    "bootcamp": {
-      "path": "skills/bootcamp/SKILL.md",
-      "phase": "discover",
-      "upstream": [],
-      "downstream": ["ontology-vision", "pipeline-plan"],
-      "artifact": "BOOTCAMP-SCOPE.md"
-    },
-    "ontology-vision": {
-      "path": "skills/ontology-vision/SKILL.md",
-      "phase": "vision",
-      "upstream": ["bootcamp"],
-      "downstream": ["ontology-architect"],
-      "artifact": "ONTOLOGY-VISION.md"
-    },
-    "ontology-architect": {
-      "path": "skills/ontology-architect/SKILL.md",
-      "phase": "architecture",
-      "upstream": ["ontology-vision"],
-      "downstream": ["workshop-builder", "aip-architect", "osdk-developer", "slate-builder", "foundry-reviewer", "foundry-qa"],
-      "artifact": "ONTOLOGY-ARCHITECTURE.md"
-    },
-    "pipeline-plan": {
-      "path": "skills/pipeline-plan/SKILL.md",
-      "phase": "architecture",
-      "upstream": ["bootcamp", "ontology-vision"],
-      "downstream": ["data-connector"],
-      "artifact": "PIPELINE-ARCHITECTURE.md"
-    },
-    "data-connector": {
-      "path": "skills/data-connector/SKILL.md",
-      "phase": "build",
-      "upstream": ["pipeline-plan"],
-      "downstream": ["pipeline-builder"],
-      "artifact": "DATA-CONNECTION-STATUS.md"
-    },
-    "pipeline-builder": {
-      "path": "skills/pipeline-builder/SKILL.md",
-      "phase": "build",
-      "upstream": ["data-connector", "pipeline-plan", "ontology-architect"],
-      "downstream": ["foundry-reviewer", "foundry-qa"],
-      "artifact": "PIPELINE-BUILD-STATUS.md"
-    },
-    "workshop-builder": {
-      "path": "skills/workshop-builder/SKILL.md",
-      "phase": "build",
-      "upstream": ["ontology-architect"],
-      "downstream": ["aip-architect", "foundry-reviewer", "foundry-qa"],
-      "artifact": "WORKSHOP-BUILD-STATUS.md"
-    },
-    "aip-architect": {
-      "path": "skills/aip-architect/SKILL.md",
-      "phase": "build",
-      "upstream": ["ontology-architect", "workshop-builder"],
-      "downstream": ["foundry-reviewer", "foundry-qa"],
-      "artifact": "AIP-AGENT-STATUS.md"
-    },
-    "osdk-developer": {
-      "path": "skills/osdk-developer/SKILL.md",
-      "phase": "build",
-      "upstream": ["ontology-architect"],
-      "downstream": ["foundry-reviewer", "foundry-qa"],
-      "artifact": "OSDK-BUILD-STATUS.md"
-    },
-    "slate-builder": {
-      "path": "skills/slate-builder/SKILL.md",
-      "phase": "build",
-      "upstream": ["ontology-architect"],
-      "downstream": ["foundry-reviewer", "foundry-qa"],
-      "artifact": "SLATE-BUILD-STATUS.md"
-    },
-    "foundry-reviewer": {
-      "path": "skills/foundry-reviewer/SKILL.md",
-      "phase": "review",
-      "upstream": ["pipeline-builder", "workshop-builder", "aip-architect", "osdk-developer", "slate-builder"],
-      "downstream": ["foundry-qa"],
-      "artifact": "REVIEW-REPORT.md"
-    },
-    "foundry-security": {
-      "path": "skills/foundry-security/SKILL.md",
-      "phase": "review",
-      "upstream": ["ontology-architect", "aip-architect", "osdk-developer"],
-      "downstream": ["apollo-deployer"],
-      "artifact": "SECURITY-AUDIT.md"
-    },
-    "foundry-qa": {
-      "path": "skills/foundry-qa/SKILL.md",
-      "phase": "test",
-      "upstream": ["foundry-reviewer"],
-      "downstream": ["apollo-deployer"],
-      "artifact": "QA-REPORT.md"
-    },
-    "apollo-deployer": {
-      "path": "skills/apollo-deployer/SKILL.md",
-      "phase": "ship",
-      "upstream": ["foundry-qa", "foundry-security"],
-      "downstream": ["training-writer"],
-      "artifact": "DEPLOYMENT-PLAN.md"
-    },
-    "training-writer": {
-      "path": "skills/training-writer/SKILL.md",
-      "phase": "ship",
-      "upstream": ["apollo-deployer"],
-      "downstream": ["deployment-retro"],
-      "artifact": "TRAINING-MATERIALS.md"
-    },
-    "deployment-retro": {
-      "path": "skills/deployment-retro/SKILL.md",
-      "phase": "reflect",
-      "upstream": ["training-writer"],
-      "downstream": [],
-      "artifact": "RETRO-REPORT.md"
-    }
+  "display_name": "pstack",
+  "tagline": "Turn one deployment strategist into a disciplined multi-agent Palantir delivery team.",
+  "description": "Operator-grade AI skill stack for Palantir bootcamps and deployments, spanning discovery, ontology, data, applications, QA, security, deployment, and retrospectives.",
+  "repo_url": "https://github.com/myceldigital/pstack",
+  "install": {
+    "script": "./install.sh",
+    "target": "~/.claude/skills/pstack",
+    "quick_start": [
+      "/bootcamp",
+      "/ontology-vision",
+      "/pipeline-plan",
+      "/ontology-architect"
+    ]
+  },
+  "generated_files": [
+    "README.md",
+    "docs/skills.md"
+  ],
+  "audience": {
+    "for": [
+      "Deployment strategists running AIP bootcamps or compressed phase-zero engagements",
+      "Foundry builders who need a disciplined artifact chain across ontology, pipeline, app, and QA work",
+      "Operators managing multiple parallel AI sessions and wanting explicit phase gates"
+    ],
+    "not_for": [
+      "Teams looking for a generic prompt pack without phase discipline",
+      "Pure software projects with no Foundry, ontology, or Apollo deployment surface",
+      "Production changes without a human deployment strategist owning approvals"
+    ]
   },
   "phases": [
-    "discover",
-    "vision",
-    "architecture",
-    "build",
-    "review",
-    "test",
-    "ship",
-    "reflect"
+    {
+      "id": "discover",
+      "label": "Discover",
+      "goal": "Lock the operational problem, customer context, and use-case priority."
+    },
+    {
+      "id": "vision",
+      "label": "Vision",
+      "goal": "Model the full digital twin and target ontology direction."
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture",
+      "goal": "Turn the chosen use case into precise ontology and pipeline designs."
+    },
+    {
+      "id": "build",
+      "label": "Build",
+      "goal": "Stand up data connections, transforms, apps, and agents in parallel."
+    },
+    {
+      "id": "review",
+      "label": "Review",
+      "goal": "Audit quality, security, and operability before testing."
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "goal": "Run end-to-end validation and produce a deployment verdict."
+    },
+    {
+      "id": "ship",
+      "label": "Ship",
+      "goal": "Deploy safely and enable adoption."
+    },
+    {
+      "id": "reflect",
+      "label": "Reflect",
+      "goal": "Capture lessons, metrics, and next-phase opportunities."
+    },
+    {
+      "id": "safety",
+      "label": "Safety",
+      "goal": "Prevent out-of-scope or destructive changes in customer environments."
+    }
   ],
-  "safety": {
-    "careful": "skills/careful/SKILL.md",
-    "freeze": "skills/freeze/SKILL.md",
-    "guard": "skills/guard/SKILL.md"
-  }
+  "artifacts": [
+    {
+      "id": "bootcamp_scope",
+      "filename": "BOOTCAMP-SCOPE.md",
+      "phase": "discover",
+      "owner_skill": "bootcamp",
+      "template_path": "templates/BOOTCAMP-SCOPE.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#bootcamp-scopemd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/BOOTCAMP-SCOPE.md",
+        "examples/engagements/northstar-healthcare/artifacts/BOOTCAMP-SCOPE.md"
+      ],
+      "consumers": [
+        "ontology-vision",
+        "pipeline-plan",
+        "ontology-architect",
+        "data-connector",
+        "workshop-builder"
+      ]
+    },
+    {
+      "id": "ontology_vision",
+      "filename": "ONTOLOGY-VISION.md",
+      "phase": "vision",
+      "owner_skill": "ontology-vision",
+      "template_path": "templates/ONTOLOGY-VISION.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#ontology-visionmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/ONTOLOGY-VISION.md",
+        "examples/engagements/northstar-healthcare/artifacts/ONTOLOGY-VISION.md"
+      ],
+      "consumers": [
+        "ontology-architect",
+        "pipeline-plan"
+      ]
+    },
+    {
+      "id": "ontology_architecture",
+      "filename": "ONTOLOGY-ARCHITECTURE.md",
+      "phase": "architecture",
+      "owner_skill": "ontology-architect",
+      "template_path": "templates/ONTOLOGY-ARCHITECTURE.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#ontology-architecturemd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/ONTOLOGY-ARCHITECTURE.md",
+        "examples/engagements/northstar-healthcare/artifacts/ONTOLOGY-ARCHITECTURE.md"
+      ],
+      "consumers": [
+        "pipeline-builder",
+        "workshop-builder",
+        "aip-architect",
+        "osdk-developer",
+        "slate-builder",
+        "foundry-security",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "pipeline_architecture",
+      "filename": "PIPELINE-ARCHITECTURE.md",
+      "phase": "architecture",
+      "owner_skill": "pipeline-plan",
+      "template_path": "templates/PIPELINE-ARCHITECTURE.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#pipeline-architecturemd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/PIPELINE-ARCHITECTURE.md",
+        "examples/engagements/northstar-healthcare/artifacts/PIPELINE-ARCHITECTURE.md"
+      ],
+      "consumers": [
+        "data-connector",
+        "ontology-architect",
+        "pipeline-builder"
+      ]
+    },
+    {
+      "id": "data_connection_status",
+      "filename": "DATA-CONNECTION-STATUS.md",
+      "phase": "build",
+      "owner_skill": "data-connector",
+      "template_path": "templates/DATA-CONNECTION-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#data-connection-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/DATA-CONNECTION-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/DATA-CONNECTION-STATUS.md"
+      ],
+      "consumers": [
+        "pipeline-builder"
+      ]
+    },
+    {
+      "id": "pipeline_build_status",
+      "filename": "PIPELINE-BUILD-STATUS.md",
+      "phase": "build",
+      "owner_skill": "pipeline-builder",
+      "template_path": "templates/PIPELINE-BUILD-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#pipeline-build-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/PIPELINE-BUILD-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/PIPELINE-BUILD-STATUS.md"
+      ],
+      "consumers": [
+        "foundry-reviewer",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "workshop_build_status",
+      "filename": "WORKSHOP-BUILD-STATUS.md",
+      "phase": "build",
+      "owner_skill": "workshop-builder",
+      "template_path": "templates/WORKSHOP-BUILD-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#workshop-build-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/WORKSHOP-BUILD-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/WORKSHOP-BUILD-STATUS.md"
+      ],
+      "consumers": [
+        "aip-architect",
+        "foundry-reviewer",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "aip_agent_status",
+      "filename": "AIP-AGENT-STATUS.md",
+      "phase": "build",
+      "owner_skill": "aip-architect",
+      "template_path": "templates/AIP-AGENT-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#aip-agent-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/AIP-AGENT-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/AIP-AGENT-STATUS.md"
+      ],
+      "consumers": [
+        "foundry-reviewer",
+        "foundry-security",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "osdk_build_status",
+      "filename": "OSDK-BUILD-STATUS.md",
+      "phase": "build",
+      "owner_skill": "osdk-developer",
+      "template_path": "templates/OSDK-BUILD-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#osdk-build-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/OSDK-BUILD-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/OSDK-BUILD-STATUS.md"
+      ],
+      "consumers": [
+        "foundry-reviewer",
+        "foundry-security",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "slate_build_status",
+      "filename": "SLATE-BUILD-STATUS.md",
+      "phase": "build",
+      "owner_skill": "slate-builder",
+      "template_path": "templates/SLATE-BUILD-STATUS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#slate-build-statusmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/SLATE-BUILD-STATUS.md",
+        "examples/engagements/northstar-healthcare/artifacts/SLATE-BUILD-STATUS.md"
+      ],
+      "consumers": [
+        "foundry-reviewer",
+        "foundry-qa"
+      ]
+    },
+    {
+      "id": "review_report",
+      "filename": "REVIEW-REPORT.md",
+      "phase": "review",
+      "owner_skill": "foundry-reviewer",
+      "template_path": "templates/REVIEW-REPORT.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#review-reportmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/REVIEW-REPORT.md",
+        "examples/engagements/northstar-healthcare/artifacts/REVIEW-REPORT.md"
+      ],
+      "consumers": [
+        "foundry-qa",
+        "deployment-retro"
+      ]
+    },
+    {
+      "id": "security_audit",
+      "filename": "SECURITY-AUDIT.md",
+      "phase": "review",
+      "owner_skill": "foundry-security",
+      "template_path": "templates/SECURITY-AUDIT.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#security-auditmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/SECURITY-AUDIT.md",
+        "examples/engagements/northstar-healthcare/artifacts/SECURITY-AUDIT.md"
+      ],
+      "consumers": [
+        "apollo-deployer",
+        "deployment-retro"
+      ]
+    },
+    {
+      "id": "qa_report",
+      "filename": "QA-REPORT.md",
+      "phase": "test",
+      "owner_skill": "foundry-qa",
+      "template_path": "templates/QA-REPORT.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#qa-reportmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/QA-REPORT.md",
+        "examples/engagements/northstar-healthcare/artifacts/QA-REPORT.md"
+      ],
+      "consumers": [
+        "apollo-deployer",
+        "deployment-retro"
+      ]
+    },
+    {
+      "id": "deployment_plan",
+      "filename": "DEPLOYMENT-PLAN.md",
+      "phase": "ship",
+      "owner_skill": "apollo-deployer",
+      "template_path": "templates/DEPLOYMENT-PLAN.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#deployment-planmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/DEPLOYMENT-PLAN.md",
+        "examples/engagements/northstar-healthcare/artifacts/DEPLOYMENT-PLAN.md"
+      ],
+      "consumers": [
+        "training-writer",
+        "deployment-retro"
+      ]
+    },
+    {
+      "id": "training_materials",
+      "filename": "TRAINING-MATERIALS.md",
+      "phase": "ship",
+      "owner_skill": "training-writer",
+      "template_path": "templates/TRAINING-MATERIALS.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#training-materialsmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/TRAINING-MATERIALS.md",
+        "examples/engagements/northstar-healthcare/artifacts/TRAINING-MATERIALS.md"
+      ],
+      "consumers": [
+        "deployment-retro"
+      ]
+    },
+    {
+      "id": "retro_report",
+      "filename": "RETRO-REPORT.md",
+      "phase": "reflect",
+      "owner_skill": "deployment-retro",
+      "template_path": "templates/RETRO-REPORT.md",
+      "rubric_ref": "evals/ARTIFACT-RUBRICS.md#retro-reportmd",
+      "example_paths": [
+        "examples/engagements/acme-supply-chain/artifacts/RETRO-REPORT.md",
+        "examples/engagements/northstar-healthcare/artifacts/RETRO-REPORT.md"
+      ],
+      "consumers": []
+    }
+  ],
+  "skills": [
+    {
+      "id": "bootcamp",
+      "invoke": "/bootcamp",
+      "title": "AIP Bootcamp Partner",
+      "phase": "discover",
+      "type": "specialist",
+      "path": "skills/bootcamp/SKILL.md",
+      "summary": "Structured discovery for new engagements; produces the bootcamp scope and use-case priority.",
+      "reads_artifacts": [],
+      "produces_artifacts": [
+        "bootcamp_scope"
+      ],
+      "downstream_skills": [
+        "ontology-vision",
+        "pipeline-plan"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not build, configure Foundry resources, or design the full ontology. Output only the bootcamp scope.",
+      "writes_scope": "BOOTCAMP-SCOPE.md only",
+      "approval_required_for": [
+        "Choosing the headline and quick-win use cases",
+        "Committing to customer-facing success metrics"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "human_decision_required"
+    },
+    {
+      "id": "ontology-vision",
+      "invoke": "/ontology-vision",
+      "title": "Ontology Strategist",
+      "phase": "vision",
+      "type": "specialist",
+      "path": "skills/ontology-vision/SKILL.md",
+      "summary": "Expands the bootcamp scope into the full target digital twin and phased ontology vision.",
+      "reads_artifacts": [
+        "bootcamp_scope"
+      ],
+      "produces_artifacts": [
+        "ontology_vision"
+      ],
+      "downstream_skills": [
+        "ontology-architect",
+        "pipeline-plan"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not lock technical backing datasets or build apps. Output only the ontology vision.",
+      "writes_scope": "ONTOLOGY-VISION.md only",
+      "approval_required_for": [
+        "Selecting the ontology expansion mode",
+        "Deferring out-of-scope entities or interfaces"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "human_decision_required"
+    },
+    {
+      "id": "ontology-architect",
+      "invoke": "/ontology-architect",
+      "title": "Ontology Engineer",
+      "phase": "architecture",
+      "type": "specialist",
+      "path": "skills/ontology-architect/SKILL.md",
+      "summary": "Locks object types, links, actions, functions, interfaces, and ontology test plans.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "ontology_vision",
+        "pipeline_architecture"
+      ],
+      "produces_artifacts": [
+        "ontology_architecture"
+      ],
+      "downstream_skills": [
+        "pipeline-builder",
+        "workshop-builder",
+        "aip-architect",
+        "osdk-developer",
+        "slate-builder",
+        "foundry-security",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not configure data connections or build application surfaces. Output only the ontology architecture.",
+      "writes_scope": "ONTOLOGY-ARCHITECTURE.md only",
+      "approval_required_for": [
+        "Locking object boundaries, action scope, and writeback patterns"
+      ],
+      "destructive_boundaries": [
+        "No production ontology mutation without /careful or explicit DS approval"
+      ],
+      "governance_tier": "human_decision_required"
+    },
+    {
+      "id": "pipeline-plan",
+      "invoke": "/pipeline-plan",
+      "title": "Data Pipeline Architect",
+      "phase": "architecture",
+      "type": "specialist",
+      "path": "skills/pipeline-plan/SKILL.md",
+      "summary": "Designs source-to-ontology flow, connection strategy, transform DAGs, and scheduling.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "ontology_vision"
+      ],
+      "produces_artifacts": [
+        "pipeline_architecture"
+      ],
+      "downstream_skills": [
+        "data-connector",
+        "ontology-architect"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not configure connections or write transforms. Output only the pipeline architecture.",
+      "writes_scope": "PIPELINE-ARCHITECTURE.md only",
+      "approval_required_for": [
+        "Choosing batch vs incremental vs CDC",
+        "Picking Pipeline Builder vs Code Repositories"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "human_decision_required"
+    },
+    {
+      "id": "data-connector",
+      "invoke": "/data-connector",
+      "title": "Data Integration Engineer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/data-connector/SKILL.md",
+      "summary": "Configures data connections, raw datasets, first-stage cleaning, and health monitoring.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "pipeline_architecture"
+      ],
+      "produces_artifacts": [
+        "data_connection_status"
+      ],
+      "downstream_skills": [
+        "pipeline-builder"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not design ontology or build applications. Stay in data onboarding and raw-to-clean staging.",
+      "writes_scope": "Connection config, raw datasets, and DATA-CONNECTION-STATUS.md",
+      "approval_required_for": [
+        "Using production credentials",
+        "Agent deployment into customer networks",
+        "Accepting degraded data-readiness workarounds"
+      ],
+      "destructive_boundaries": [
+        "Never store secrets in artifacts",
+        "Do not overwrite raw data with transformed output"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "pipeline-builder",
+      "invoke": "/pipeline-builder",
+      "title": "Pipeline Engineer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/pipeline-builder/SKILL.md",
+      "summary": "Builds transforms, quality checks, and output datasets that back the ontology.",
+      "reads_artifacts": [
+        "data_connection_status",
+        "pipeline_architecture",
+        "ontology_architecture"
+      ],
+      "produces_artifacts": [
+        "pipeline_build_status"
+      ],
+      "downstream_skills": [
+        "foundry-reviewer",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not redesign architecture mid-build without surfacing the issue. Output only pipeline build status and associated transforms.",
+      "writes_scope": "Transforms, output datasets, and PIPELINE-BUILD-STATUS.md",
+      "approval_required_for": [
+        "Changing incremental strategy after initial lock",
+        "Accepting manual refresh as a production workaround"
+      ],
+      "destructive_boundaries": [
+        "No deletion of production datasets without /careful"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "workshop-builder",
+      "invoke": "/workshop-builder",
+      "title": "Workshop Application Developer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/workshop-builder/SKILL.md",
+      "summary": "Builds operational Workshop apps, wiring actions, variables, widgets, and flows.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "ontology_architecture"
+      ],
+      "produces_artifacts": [
+        "workshop_build_status"
+      ],
+      "downstream_skills": [
+        "aip-architect",
+        "foundry-reviewer",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not redesign the ontology. Build application surfaces against the locked architecture.",
+      "writes_scope": "Workshop app configuration and WORKSHOP-BUILD-STATUS.md",
+      "approval_required_for": [
+        "Publishing customer-facing app flows",
+        "Changing operational action bindings"
+      ],
+      "destructive_boundaries": [
+        "No deletion of published app pages without /careful"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "aip-architect",
+      "invoke": "/aip-architect",
+      "title": "AIP Agent Designer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/aip-architect/SKILL.md",
+      "summary": "Designs agent prompts, context scope, tools, evals, and Automate workflows.",
+      "reads_artifacts": [
+        "ontology_architecture",
+        "workshop_build_status"
+      ],
+      "produces_artifacts": [
+        "aip_agent_status"
+      ],
+      "downstream_skills": [
+        "foundry-reviewer",
+        "foundry-security",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not expand the agent beyond the approved ontology and app scope.",
+      "writes_scope": "Agent design, eval definitions, and AIP-AGENT-STATUS.md",
+      "approval_required_for": [
+        "Adding write-capable tools",
+        "Expanding context scope across sensitive objects"
+      ],
+      "destructive_boundaries": [
+        "No prompt or tool mutation on production agents without /careful"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "osdk-developer",
+      "invoke": "/osdk-developer",
+      "title": "OSDK Application Developer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/osdk-developer/SKILL.md",
+      "summary": "Builds custom applications against the Ontology SDK when Workshop is insufficient.",
+      "reads_artifacts": [
+        "ontology_architecture"
+      ],
+      "produces_artifacts": [
+        "osdk_build_status"
+      ],
+      "downstream_skills": [
+        "foundry-reviewer",
+        "foundry-security",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not widen the scope beyond the locked ontology and approved app need.",
+      "writes_scope": "OSDK app assets and OSDK-BUILD-STATUS.md",
+      "approval_required_for": [
+        "Adding new OAuth scopes",
+        "Choosing OSDK over Workshop for a primary use case"
+      ],
+      "destructive_boundaries": [
+        "No scope expansion without DS approval"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "slate-builder",
+      "invoke": "/slate-builder",
+      "title": "Slate Application Developer",
+      "phase": "build",
+      "type": "specialist",
+      "path": "skills/slate-builder/SKILL.md",
+      "summary": "Builds Slate apps for complex, pixel-precise, or deeply integrated user experiences.",
+      "reads_artifacts": [
+        "ontology_architecture"
+      ],
+      "produces_artifacts": [
+        "slate_build_status"
+      ],
+      "downstream_skills": [
+        "foundry-reviewer",
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Use Slate only when simpler app surfaces are not sufficient.",
+      "writes_scope": "Slate app assets and SLATE-BUILD-STATUS.md",
+      "approval_required_for": [
+        "Choosing Slate as the primary UX path",
+        "Introducing external integrations"
+      ],
+      "destructive_boundaries": [
+        "No production app replacement without DS approval"
+      ],
+      "governance_tier": "guard_recommended"
+    },
+    {
+      "id": "foundry-reviewer",
+      "invoke": "/foundry-reviewer",
+      "title": "Foundry Code Reviewer",
+      "phase": "review",
+      "type": "specialist",
+      "path": "skills/foundry-reviewer/SKILL.md",
+      "summary": "Performs structural audit of pipeline, ontology, app, and agent deliverables.",
+      "reads_artifacts": [
+        "pipeline_build_status",
+        "workshop_build_status",
+        "aip_agent_status",
+        "osdk_build_status",
+        "slate_build_status",
+        "ontology_architecture"
+      ],
+      "produces_artifacts": [
+        "review_report"
+      ],
+      "downstream_skills": [
+        "foundry-qa"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Fix obvious issues first; escalate only genuinely ambiguous trade-offs.",
+      "writes_scope": "REVIEW-REPORT.md and tightly scoped remediations",
+      "approval_required_for": [
+        "Any fix that changes product scope or customer-facing behavior"
+      ],
+      "destructive_boundaries": [
+        "No broad refactors outside reviewed scope"
+      ],
+      "governance_tier": "review_gate"
+    },
+    {
+      "id": "foundry-security",
+      "invoke": "/foundry-security",
+      "title": "Foundry Security Officer",
+      "phase": "review",
+      "type": "specialist",
+      "path": "skills/foundry-security/SKILL.md",
+      "summary": "Audits permissions, markings, agent scoping, OAuth scopes, data governance, and deployment security.",
+      "reads_artifacts": [
+        "ontology_architecture",
+        "aip_agent_status",
+        "osdk_build_status",
+        "pipeline_build_status",
+        "workshop_build_status"
+      ],
+      "produces_artifacts": [
+        "security_audit"
+      ],
+      "downstream_skills": [
+        "apollo-deployer"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not silently accept risky permission patterns. Capture exploit path and remediation for every real issue.",
+      "writes_scope": "SECURITY-AUDIT.md only",
+      "approval_required_for": [
+        "Risk acceptance on unresolved high or critical findings"
+      ],
+      "destructive_boundaries": [
+        "No permission changes without explicit DS approval"
+      ],
+      "governance_tier": "security_gate"
+    },
+    {
+      "id": "foundry-qa",
+      "invoke": "/foundry-qa",
+      "title": "AIP Evaluation Engineer",
+      "phase": "test",
+      "type": "specialist",
+      "path": "skills/foundry-qa/SKILL.md",
+      "summary": "Runs end-to-end QA, evals, and readiness scoring before deployment.",
+      "reads_artifacts": [
+        "review_report",
+        "pipeline_build_status",
+        "workshop_build_status",
+        "aip_agent_status",
+        "security_audit"
+      ],
+      "produces_artifacts": [
+        "qa_report"
+      ],
+      "downstream_skills": [
+        "apollo-deployer"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not greenlight deployment with a failing health score or missing critical test evidence.",
+      "writes_scope": "QA-REPORT.md only",
+      "approval_required_for": [
+        "Accepting a borderline health score or test gap"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "quality_gate"
+    },
+    {
+      "id": "apollo-deployer",
+      "invoke": "/apollo-deployer",
+      "title": "Apollo Deployment Engineer",
+      "phase": "ship",
+      "type": "specialist",
+      "path": "skills/apollo-deployer/SKILL.md",
+      "summary": "Manages release channels, deployment strategy, rollback, and post-deploy verification.",
+      "reads_artifacts": [
+        "qa_report",
+        "security_audit"
+      ],
+      "produces_artifacts": [
+        "deployment_plan"
+      ],
+      "downstream_skills": [
+        "training-writer"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Block deployment when health score is below threshold or critical security issues remain unresolved.",
+      "writes_scope": "DEPLOYMENT-PLAN.md and deployment execution plan only",
+      "approval_required_for": [
+        "Production deployment",
+        "Rollback execution",
+        "Release-channel policy changes"
+      ],
+      "destructive_boundaries": [
+        "No production cutover without /careful or explicit DS approval"
+      ],
+      "governance_tier": "deployment_gate"
+    },
+    {
+      "id": "training-writer",
+      "invoke": "/training-writer",
+      "title": "Customer Training Engineer",
+      "phase": "ship",
+      "type": "specialist",
+      "path": "skills/training-writer/SKILL.md",
+      "summary": "Produces customer guides, runbooks, decks, and enablement materials from the built system.",
+      "reads_artifacts": [
+        "deployment_plan",
+        "qa_report",
+        "security_audit",
+        "ontology_architecture",
+        "workshop_build_status",
+        "aip_agent_status"
+      ],
+      "produces_artifacts": [
+        "training_materials"
+      ],
+      "downstream_skills": [
+        "deployment-retro"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not invent unsupported workflows; training materials must match the actual delivered system.",
+      "writes_scope": "TRAINING-MATERIALS.md only",
+      "approval_required_for": [
+        "Any change to customer operating model or support promises"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "customer_facing"
+    },
+    {
+      "id": "deployment-retro",
+      "invoke": "/deployment-retro",
+      "title": "Deployment Retrospective",
+      "phase": "reflect",
+      "type": "specialist",
+      "path": "skills/deployment-retro/SKILL.md",
+      "summary": "Captures engagement metrics, friction points, lessons learned, and next-wave opportunities.",
+      "reads_artifacts": [
+        "bootcamp_scope",
+        "ontology_architecture",
+        "review_report",
+        "qa_report",
+        "deployment_plan",
+        "training_materials"
+      ],
+      "produces_artifacts": [
+        "retro_report"
+      ],
+      "downstream_skills": [],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "AskUserQuestion",
+        "WebSearch"
+      ],
+      "hard_gate": "Do not rewrite history; call out what actually happened and what would change next time.",
+      "writes_scope": "RETRO-REPORT.md only",
+      "approval_required_for": [
+        "Sharing sensitive customer lessons beyond the project team"
+      ],
+      "destructive_boundaries": [],
+      "governance_tier": "internal_review"
+    },
+    {
+      "id": "careful",
+      "invoke": "/careful",
+      "title": "Careful Mode",
+      "phase": "safety",
+      "type": "safety",
+      "path": "skills/careful/SKILL.md",
+      "summary": "Requires explicit DS confirmation before destructive Foundry operations.",
+      "reads_artifacts": [],
+      "produces_artifacts": [],
+      "downstream_skills": [],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "AskUserQuestion"
+      ],
+      "hard_gate": "Never proceed with destructive operations without explicit confirmation.",
+      "writes_scope": "No file artifact; policy mode only",
+      "approval_required_for": [
+        "All destructive operations"
+      ],
+      "destructive_boundaries": [
+        "Ontology deletion",
+        "Pipeline deletion",
+        "Published app changes",
+        "Production agent mutation",
+        "Permission changes",
+        "Production deploy or rollback"
+      ],
+      "governance_tier": "safety_mode"
+    },
+    {
+      "id": "freeze",
+      "invoke": "/freeze",
+      "title": "Freeze Mode",
+      "phase": "safety",
+      "type": "safety",
+      "path": "skills/freeze/SKILL.md",
+      "summary": "Restricts all modifications to an explicit project, use-case, or environment scope.",
+      "reads_artifacts": [],
+      "produces_artifacts": [],
+      "downstream_skills": [],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "AskUserQuestion"
+      ],
+      "hard_gate": "No out-of-scope modifications while freeze mode is active.",
+      "writes_scope": "No file artifact; policy mode only",
+      "approval_required_for": [
+        "Changing the frozen scope",
+        "Disabling freeze when work remains in customer environments"
+      ],
+      "destructive_boundaries": [
+        "Block edits outside the specified scope"
+      ],
+      "governance_tier": "safety_mode"
+    },
+    {
+      "id": "guard",
+      "invoke": "/guard",
+      "title": "Guard Mode",
+      "phase": "safety",
+      "type": "safety",
+      "path": "skills/guard/SKILL.md",
+      "summary": "Combines careful and freeze for maximum safety in production customer work.",
+      "reads_artifacts": [],
+      "produces_artifacts": [],
+      "downstream_skills": [],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "AskUserQuestion"
+      ],
+      "hard_gate": "Combine confirmation requirements with frozen-scope enforcement for all customer mutations.",
+      "writes_scope": "No file artifact; policy mode only",
+      "approval_required_for": [
+        "Changing or disabling safety posture in production environments"
+      ],
+      "destructive_boundaries": [
+        "All boundaries from careful plus all scope boundaries from freeze"
+      ],
+      "governance_tier": "safety_mode"
+    }
+  ],
+  "examples": [
+    {
+      "id": "acme-supply-chain",
+      "title": "Acme Supply Chain Control Tower",
+      "industry": "Supply chain / manufacturing",
+      "path": "examples/engagements/acme-supply-chain",
+      "focus": "Inventory risk, expedite decisions, and supplier delay visibility."
+    },
+    {
+      "id": "northstar-healthcare",
+      "title": "Northstar Healthcare Patient Flow",
+      "industry": "Healthcare",
+      "path": "examples/engagements/northstar-healthcare",
+      "focus": "Bed management, discharge coordination, and escalation workflow visibility."
+    }
+  ],
+  "eval_cases": [
+    {
+      "id": "bootcamp-supply-chain",
+      "path": "evals/cases/bootcamp-supply-chain",
+      "target_skills": [
+        "bootcamp",
+        "ontology-vision",
+        "pipeline-plan"
+      ],
+      "example_id": "acme-supply-chain"
+    },
+    {
+      "id": "pipeline-healthcare",
+      "path": "evals/cases/pipeline-healthcare",
+      "target_skills": [
+        "data-connector",
+        "pipeline-builder",
+        "foundry-security",
+        "foundry-qa"
+      ],
+      "example_id": "northstar-healthcare"
+    }
+  ]
 }

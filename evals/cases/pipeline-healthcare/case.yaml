@@ -1,0 +1,8 @@
+case_id: pipeline-healthcare
+example: examples/engagements/northstar-healthcare
+skills:
+  - /data-connector
+  - /pipeline-builder
+  - /foundry-security
+  - /foundry-qa
+objective: Validate healthcare patient-flow build, security, and QA readiness under realistic deployment constraints.
