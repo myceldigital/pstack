@@ -1,0 +1,134 @@
+{
+  "name": "pstack",
+  "version": "1.0.0",
+  "description": "Palantir Deployment Strategist AI Team",
+  "skills": {
+    "bootcamp": {
+      "path": "skills/bootcamp/SKILL.md",
+      "phase": "discover",
+      "upstream": [],
+      "downstream": ["ontology-vision", "pipeline-plan"],
+      "artifact": "BOOTCAMP-SCOPE.md"
+    },
+    "ontology-vision": {
+      "path": "skills/ontology-vision/SKILL.md",
+      "phase": "vision",
+      "upstream": ["bootcamp"],
+      "downstream": ["ontology-architect"],
+      "artifact": "ONTOLOGY-VISION.md"
+    },
+    "ontology-architect": {
+      "path": "skills/ontology-architect/SKILL.md",
+      "phase": "architecture",
+      "upstream": ["ontology-vision"],
+      "downstream": ["workshop-builder", "aip-architect", "osdk-developer", "slate-builder", "foundry-reviewer", "foundry-qa"],
+      "artifact": "ONTOLOGY-ARCHITECTURE.md"
+    },
+    "pipeline-plan": {
+      "path": "skills/pipeline-plan/SKILL.md",
+      "phase": "architecture",
+      "upstream": ["bootcamp", "ontology-vision"],
+      "downstream": ["data-connector"],
+      "artifact": "PIPELINE-ARCHITECTURE.md"
+    },
+    "data-connector": {
+      "path": "skills/data-connector/SKILL.md",
+      "phase": "build",
+      "upstream": ["pipeline-plan"],
+      "downstream": ["pipeline-builder"],
+      "artifact": "DATA-CONNECTION-STATUS.md"
+    },
+    "pipeline-builder": {
+      "path": "skills/pipeline-builder/SKILL.md",
+      "phase": "build",
+      "upstream": ["data-connector", "pipeline-plan", "ontology-architect"],
+      "downstream": ["foundry-reviewer", "foundry-qa"],
+      "artifact": "PIPELINE-BUILD-STATUS.md"
+    },
+    "workshop-builder": {
+      "path": "skills/workshop-builder/SKILL.md",
+      "phase": "build",
+      "upstream": ["ontology-architect"],
+      "downstream": ["aip-architect", "foundry-reviewer", "foundry-qa"],
+      "artifact": "WORKSHOP-BUILD-STATUS.md"
+    },
+    "aip-architect": {
+      "path": "skills/aip-architect/SKILL.md",
+      "phase": "build",
+      "upstream": ["ontology-architect", "workshop-builder"],
+      "downstream": ["foundry-reviewer", "foundry-qa"],
+      "artifact": "AIP-AGENT-STATUS.md"
+    },
+    "osdk-developer": {
+      "path": "skills/osdk-developer/SKILL.md",
+      "phase": "build",
+      "upstream": ["ontology-architect"],
+      "downstream": ["foundry-reviewer", "foundry-qa"],
+      "artifact": "OSDK-BUILD-STATUS.md"
+    },
+    "slate-builder": {
+      "path": "skills/slate-builder/SKILL.md",
+      "phase": "build",
+      "upstream": ["ontology-architect"],
+      "downstream": ["foundry-reviewer", "foundry-qa"],
+      "artifact": "SLATE-BUILD-STATUS.md"
+    },
+    "foundry-reviewer": {
+      "path": "skills/foundry-reviewer/SKILL.md",
+      "phase": "review",
+      "upstream": ["pipeline-builder", "workshop-builder", "aip-architect", "osdk-developer", "slate-builder"],
+      "downstream": ["foundry-qa"],
+      "artifact": "REVIEW-REPORT.md"
+    },
+    "foundry-security": {
+      "path": "skills/foundry-security/SKILL.md",
+      "phase": "review",
+      "upstream": ["ontology-architect", "aip-architect", "osdk-developer"],
+      "downstream": ["apollo-deployer"],
+      "artifact": "SECURITY-AUDIT.md"
+    },
+    "foundry-qa": {
+      "path": "skills/foundry-qa/SKILL.md",
+      "phase": "test",
+      "upstream": ["foundry-reviewer"],
+      "downstream": ["apollo-deployer"],
+      "artifact": "QA-REPORT.md"
+    },
+    "apollo-deployer": {
+      "path": "skills/apollo-deployer/SKILL.md",
+      "phase": "ship",
+      "upstream": ["foundry-qa", "foundry-security"],
+      "downstream": ["training-writer"],
+      "artifact": "DEPLOYMENT-PLAN.md"
+    },
+    "training-writer": {
+      "path": "skills/training-writer/SKILL.md",
+      "phase": "ship",
+      "upstream": ["apollo-deployer"],
+      "downstream": ["deployment-retro"],
+      "artifact": "TRAINING-MATERIALS.md"
+    },
+    "deployment-retro": {
+      "path": "skills/deployment-retro/SKILL.md",
+      "phase": "reflect",
+      "upstream": ["training-writer"],
+      "downstream": [],
+      "artifact": "RETRO-REPORT.md"
+    }
+  },
+  "phases": [
+    "discover",
+    "vision",
+    "architecture",
+    "build",
+    "review",
+    "test",
+    "ship",
+    "reflect"
+  ],
+  "safety": {
+    "careful": "skills/careful/SKILL.md",
+    "freeze": "skills/freeze/SKILL.md",
+    "guard": "skills/guard/SKILL.md"
+  }
+}
