@@ -2,6 +2,7 @@
 
 ## 2026-03-31
 
+- Rewrote the `examples/` library into detailed synthetic customer engagements so both sample projects now read like real DS delivery artifacts across discovery, architecture, build, governance, QA, deployment, training, and retrospective phases.
 - Bootstrapped the repository for first GitHub publication by adding `PROJECT_TECHNICAL_OVERVIEW.md`, `workflow_state.md`, and a minimal `.gitignore` so the project is understandable and clean to publish.
 - Published rationale: establish `pstack` as a shareable, root-documented GitHub repository with the required planning and project-overview metadata in place from the first commit.
 - Configured GitHub repository metadata and protection baseline by setting the description, README homepage, discovery topics, and a standard `main` branch review policy to make the repo easier to discover and safer to change.

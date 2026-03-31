@@ -54,8 +54,8 @@ The repository applies a conductor model:
 
 ### Examples and evals
 
-- `examples/engagements/acme-supply-chain/`: full synthetic supply chain / manufacturing engagement with all conductor artifacts.
-- `examples/engagements/northstar-healthcare/`: full synthetic healthcare engagement with all conductor artifacts.
+- `examples/engagements/acme-supply-chain/`: detailed synthetic supply chain / manufacturing engagement with DS-grade discovery, architecture, build, governance, QA, deployment, training, and retro artifacts.
+- `examples/engagements/northstar-healthcare/`: detailed synthetic healthcare engagement with DS-grade discovery, architecture, build, governance, QA, deployment, training, and retro artifacts.
 - `evals/ARTIFACT-RUBRICS.md`: acceptance rubric for every named artifact.
 - `evals/SKILL-SCORECARD.md`: benchmark score targets per skill.
 - `evals/cases/*`: benchmark cases with scoped rubric, scorecards, and structured fixtures.
@@ -164,4 +164,4 @@ The repository itself is mostly Markdown, JSON, and Python-based generation glue
 
 ## Publish Notes
 
-This repository was initially bootstrapped locally and then prepared for first publication to GitHub as `myceldigital/pstack`. It has since been upgraded from a skill collection into a more rigorous operator system with a canonical conductor registry, generated docs, a formal program manual, full template coverage, end-to-end examples, eval rubrics, and a first-pass gated self-improvement loop.
+This repository was initially bootstrapped locally and then prepared for first publication to GitHub as `myceldigital/pstack`. It has since been upgraded from a skill collection into a more rigorous operator system with a canonical conductor registry, generated docs, a formal program manual, full template coverage, end-to-end examples, eval rubrics, and a first-pass gated self-improvement loop. The example library now reads like detailed synthetic customer delivery records rather than thin placeholder artifacts.
